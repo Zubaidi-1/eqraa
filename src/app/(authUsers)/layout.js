@@ -1,7 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import { Cairo } from "next/font/google";
+import Nav from "@/components/Nav";
 export const cairo = Cairo({
   subsets: ["arabic", "latin"],
   weight: ["300", "400", "500", "600", "700"],
@@ -24,14 +25,9 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${cairo.className} ${geistMono.variable} antialiased`}
-      >
-        <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-          {children}
-        </AppRouterCacheProvider>
-      </body>
-    </html>
+    <AppRouterCacheProvider options={{ enableCssLayer: true }}>
+      <Nav></Nav>
+      {children}
+    </AppRouterCacheProvider>
   );
 }
