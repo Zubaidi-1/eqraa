@@ -29,7 +29,7 @@ export default async function MyBlogs() {
         </div>
       </div>
       <div className="grid grid-cols-3 gap-8 " dir="rtl">
-        {blogs.data.map((blog) => (
+        {blogs?.data?.map((blog) => (
           <BlogCard
             blog={blog.id}
             title={blog.title}
