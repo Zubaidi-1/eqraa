@@ -1,13 +1,9 @@
-import { getBlogs } from "@/actions/blogs/blogActions";
-import BlogCard from "@/components/BlogCard";
+import AllBlogs from "@/components/AllBlogsGrid";
 import Animations from "@/components/BooksLandingSkeleton";
 import Link from "next/link";
 import { Suspense } from "react";
 
-export default async function Blogs() {
-  const blogs = await getBlogs();
-  console.log(blogs);
-
+export default function Blogs() {
   return (
     <div className="min-h-screen bg-[#daddd8] flex flex-col justify-center items-center">
       <div>
@@ -32,18 +28,7 @@ export default async function Blogs() {
         </div>
       </div>
       <Suspense fallback={<Animations />}>
-        <div className="grid grid-cols-3 gap-8 " dir="rtl">
-          {blogs.data.map((blog) => (
-            <BlogCard
-              title={blog.title}
-              body={blog.body}
-              author={blog.author}
-              date={blog.created_at}
-              key={blog.id}
-              blog={blog.id}
-            />
-          ))}
-        </div>
+        <AllBlogs />
       </Suspense>
     </div>
   );
