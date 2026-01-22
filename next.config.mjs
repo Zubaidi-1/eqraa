@@ -3,6 +3,7 @@ const nextConfig = {
   outputFileTracingRoot: process.cwd(),
 
   reactCompiler: true,
+  cacheComponents: true,
   images: {
     remotePatterns: [
       {
