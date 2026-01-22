@@ -1,5 +1,7 @@
 "use server";
 import { createClient } from "@/utils/supabse/server";
+import { createClient as createBrowserClient } from "@/utils/supabse/client";
+
 import { cookies } from "next/headers";
 
 export const addBlog = async (values) => {
@@ -49,8 +51,7 @@ export const deleteBlog = async (blog_id) => {
 };
 
 export const showSpecificBlog = async (blog_id) => {
-  const cookieStore = await cookies();
-  const supabase = createClient(cookieStore);
+  const supabase = createBrowserClient();
   const { data, error } = await supabase
     .from("blogs")
     .select("*")
