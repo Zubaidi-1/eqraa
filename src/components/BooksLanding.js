@@ -39,32 +39,36 @@ export default function BooksLanding({ category, categoryAR }) {
         >
           <NavigateBeforeIcon fontSize="large" />
         </button>
-
+        {/* 
         {loading ? (
-          <Animations>
-            <div className="flex gap-6 overflow-hidden">
-              {books?.slice(filter, filter + 5).map((book, i) => (
-                <BookCard
-                  work_id={book.key}
-                  key={`${book.cover_i}-${i}`}
-                  author={book.author_name}
-                  title={book.title}
-                  languages={book.language}
-                  cover={book.cover_i}
-                />
-              ))}
-            </div>
-
-            <button
-              onClick={() => handleFilter("increment")}
-              className="p-3 rounded-full bg-white shadow  hover:scale-110 transition"
-            >
-              <NavigateNextIcon fontSize="large" />
-            </button>
-          </Animations>
+          <Animations> */}
+        {loading ? (
+          <Animations />
         ) : (
-          ""
+          <div className="flex gap-6 overflow-hidden">
+            {books?.slice(filter, filter + 5).map((book, i) => (
+              <BookCard
+                work_id={book.key}
+                key={`${book.cover_i}-${i}`}
+                author={book.author_name}
+                title={book.title}
+                languages={book.language}
+                cover={book.cover_i}
+              />
+            ))}
+          </div>
         )}
+
+        <button
+          onClick={() => handleFilter("increment")}
+          className="p-3 rounded-full bg-white shadow  hover:scale-110 transition"
+        >
+          <NavigateNextIcon fontSize="large" />
+        </button>
+        {/* </Animations> */}
+        {/* ) : (
+          ""
+        )} */}
       </div>
     </div>
   );
