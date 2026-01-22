@@ -4,10 +4,23 @@ import { addBlog } from "@/actions/blogs/blogActions";
 import { addBlogSchema } from "@/schemas/blogs/blogSchema";
 import { createClient } from "@/utils/supabse/client";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
+import { redirect } from "next/navigation";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 export default function create() {
+  // get user
+
+  useEffect(() => {
+    const checkUser = async () => {
+      const supabase = createClient();
+      const { data } = await supabase.auth.getUser();
+      if (!data.user) {
+        redirect("/auth/login");
+      }
+    };
+    checkUser();
+  }, []);
   const [errorMessage, setErrorMessage] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
 

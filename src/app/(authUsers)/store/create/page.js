@@ -2,11 +2,23 @@
 
 import { addListing, imageUpload } from "@/actions/listing/listingActions";
 import { ListingSchema } from "@/schemas/listing/listingSchema";
+import { createClient } from "@/utils/supabse/client";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
+import { redirect } from "next/navigation";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 export default function CreateListing() {
+  useEffect(() => {
+    const checkUser = async () => {
+      const supabase = createClient();
+      const { data } = await supabase.auth.getUser();
+      if (!data.user) {
+        redirect("/auth/login");
+      }
+    };
+    checkUser();
+  }, []);
   // ! form handling
   const {
     register,
